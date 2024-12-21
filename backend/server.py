@@ -2,20 +2,18 @@ import json
 import os
 from datetime import datetime, timedelta, timezone
 from http import HTTPStatus
-
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from flask_jwt_extended import (JWTManager, create_access_token, get_jwt,
-                                get_jwt_identity, jwt_required,
-                                unset_jwt_cookies)
+from flask_jwt_extended import (JWTManager, create_access_token, get_jwt, get_jwt_identity,jwt_required, unset_jwt_cookies)
 from marshmallow import ValidationError
-
 from db import db
 from models import (UserModel, DonationModel)
 from schemas import (UserSchema, DonationSchema)
 from security import get_sha256
 from utils.parser import parse_user_instances, parse_personal_donation
+from dotenv import load_dotenv
 
+load_dotenv()
 donationSchema = DonationSchema()
 userSchema = UserSchema()
 admin_account = os.environ.get("ADMIN_ACCOUNT")

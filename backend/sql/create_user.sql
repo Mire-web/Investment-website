@@ -7,5 +7,5 @@ CREATE TABLE users (
     password varchar(80),
     UNIQUE (account)
 );
-INSERT INTO users (account, category, password) VALUES ('root', 0, SHA2('root', 256));
+INSERT INTO users (account, category, password) VALUES ('admin', 0, SHA2('admin', 256));
 INSERT INTO users (account, category, password) VALUES ('test', 1, SHA2('test', 256));
