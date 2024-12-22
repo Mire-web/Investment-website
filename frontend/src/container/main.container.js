@@ -53,6 +53,10 @@ function MainPage({ token }) {
             <p>"Exceptional support and great returns. I couldn't ask for more!"</p>
             <h5>- Li Wei</h5>
           </div>
+          <div className="testimonial-card">
+            <p>"Just love the simplicity of the investment process"</p>
+            <h5>- Andre Kenneth</h5>
+          </div>
         </div>
       </section>
 
