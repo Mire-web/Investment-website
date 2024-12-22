@@ -19,7 +19,7 @@ function App() {
     <Router>
       <div className="App">
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
-          <div className="container d-flex justify-content-between">
+          <div className="container d-flex justify-content-between w-100">
             <Link className="navbar-brand d-flex align-items-center" to={"/"}>
               <img src={logo} alt="Logo" width="40" height="40" className="me-2" />
               <span>MinersWealth</span>
@@ -37,7 +37,7 @@ function App() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               {!token && token !== "" && token !== undefined ? (
-                <ul className="navbar-nav ms-auto">
+                <ul className="navbar-nav ms-auto ml-auto">
                   <li className="nav-item">
                     <Link className="nav-link" to={"/sign-in"}>Login</Link>
                   </li>
@@ -55,7 +55,7 @@ function App() {
 		  </li>
                 </ul>
               ) : (
-                <ul className="navbar-nav ms-auto">
+                <ul className="navbar-nav ms-auto ml-auto">
                   <li className="nav-item">
                     <Link className="nav-link" to={"/admin"}>Admin</Link>
                   </li>
