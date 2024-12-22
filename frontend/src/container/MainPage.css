@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* Main Wrapper */
 .main-wrapper {
-	font-family: Arial, sans-serif;
+	font-family: "Poppins", serif;
+	font-style: normal;
 	color: white;
 	background-color: black;
 	margin: 0;
@@ -22,25 +25,34 @@
   }
   
   .hero-content h1 {
-	font-size: 3rem;
+	font-size: 5rem;
 	margin-bottom: 20px;
+	color: white;
   }
   
   .hero-content p {
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	margin-bottom: 30px;
+	color: white;
   }
   
-  .cta-button a {
+  .cta-button{
 	text-decoration: none;
 	color: white;
 	background-color: black;
 	padding: 15px 30px;
-	border-radius: 5px;
+	border-radius: 15px;
 	font-size: 1rem;
+	outline: none;
+	border: none;
+  }
+
+  .cta-button a{
+	text-decoration: none;
+	color: white;
   }
   
-  .cta-button a:hover {
+  .cta-button:hover {
 	background-color: darkgoldenrod;
   }
   
@@ -90,6 +102,8 @@
 	overflow-x: auto;
 	gap: 20px;
 	padding: 20px 0;
+	justify-content: center;
+	align-items: center;
   }
   
   .testimonial-card {
@@ -97,7 +111,8 @@
 	color: black;
 	padding: 20px;
 	border-radius: 10px;
-	min-width: 300px;
+	width: 300px;
+	min-height: 150px;
   }
   
   .testimonial-card h5 {
@@ -110,12 +125,18 @@
 	background-color: white;
 	color: black;
 	padding: 50px 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
   }
   
   .about-section h2 {
 	color: gold;
 	text-align: center;
 	margin-bottom: 20px;
+	font-size: 2rem;
   }
   
   .about-section ul {
@@ -125,11 +146,12 @@
   
   .about-section li {
 	margin-bottom: 10px;
-	font-size: 1rem;
+	font-size: 1.2rem;
   }
   
   .about-section li strong {
 	color: gold;
+	font-size: 1.5rem;
   }
   
   /* Footer Section */
@@ -147,6 +169,6 @@
   }
   
   .footer-links a:hover {
-	text-decoration: underline;
+	color: white;
   }
   

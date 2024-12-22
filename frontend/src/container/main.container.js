@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import GitHubButton from 'react-github-btn';
 import "./MainPage.css";
 
 function MainPage({ token }) {

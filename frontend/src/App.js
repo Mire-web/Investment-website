@@ -24,7 +24,7 @@ function App() {
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
           <img src={logo} width="30" height="30" alt=""/> 
-          <Link className="navbar-brand" to={"/"}>SPARK investment website</Link>
+          <Link className="navbar-brand" to={"/"}>Minerswealth</Link>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             {!token && token!=="" &&token!== undefined ? (
               <ul className="navbar-nav ml-auto">
