@@ -1,0 +1,152 @@
+/* Main Wrapper */
+.main-wrapper {
+	font-family: Arial, sans-serif;
+	color: white;
+	background-color: black;
+	margin: 0;
+	padding: 0;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+	background-image: linear-gradient(rgba(0,0,0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/hero.jpg');
+	background-size: cover;
+	color: black;
+	height: 80vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 50px 20px;
+	position: relative;
+  }
+  
+  .hero-content h1 {
+	font-size: 3rem;
+	margin-bottom: 20px;
+  }
+  
+  .hero-content p {
+	font-size: 1.2rem;
+	margin-bottom: 30px;
+  }
+  
+  .cta-button a {
+	text-decoration: none;
+	color: white;
+	background-color: black;
+	padding: 15px 30px;
+	border-radius: 5px;
+	font-size: 1rem;
+  }
+  
+  .cta-button a:hover {
+	background-color: darkgoldenrod;
+  }
+  
+  /* Services Section */
+  .services-section {
+	background-color: black;
+	color: white;
+	text-align: center;
+	padding: 50px 20px;
+  }
+  
+  .services-cards {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin-top: 20px;
+  }
+  
+  .card {
+	background-color: white;
+	color: black;
+	padding: 20px;
+	border-radius: 10px;
+	margin: 10px;
+	width: 300px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card h3 {
+	color: gold;
+  }
+  
+  .card p {
+	font-size: 1rem;
+  }
+  
+  /* Testimonial Section */
+  .testimonial-section {
+	background-color: black;
+	color: white;
+	text-align: center;
+	padding: 50px 20px;
+  }
+  
+  .testimonial-slider {
+	display: flex;
+	overflow-x: auto;
+	gap: 20px;
+	padding: 20px 0;
+  }
+  
+  .testimonial-card {
+	background-color: gold;
+	color: black;
+	padding: 20px;
+	border-radius: 10px;
+	min-width: 300px;
+  }
+  
+  .testimonial-card h5 {
+	margin-top: 10px;
+	font-weight: bold;
+  }
+  
+  /* About Section */
+  .about-section {
+	background-color: white;
+	color: black;
+	padding: 50px 20px;
+  }
+  
+  .about-section h2 {
+	color: gold;
+	text-align: center;
+	margin-bottom: 20px;
+  }
+  
+  .about-section ul {
+	list-style: none;
+	padding: 0;
+  }
+  
+  .about-section li {
+	margin-bottom: 10px;
+	font-size: 1rem;
+  }
+  
+  .about-section li strong {
+	color: gold;
+  }
+  
+  /* Footer Section */
+  .footer-section {
+	background-color: black;
+	color: white;
+	text-align: center;
+	padding: 20px;
+  }
+  
+  .footer-links a {
+	color: gold;
+	margin: 0 10px;
+	text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+	text-decoration: underline;
+  }
+  
