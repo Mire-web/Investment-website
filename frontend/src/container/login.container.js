@@ -6,11 +6,11 @@ import "./Login.css";
 
 function Login({ setToken }) {
   const history = useHistory();
-  const [account, setAccount] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleAccountChange = (e) => {
-    setAccount(e.target.value);
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -20,10 +20,10 @@ function Login({ setToken }) {
   const logMeIn = (e) => {
     e.preventDefault(); // Prevent form reload
     axios
-      .post("/api/token", { account, password })
+      .post("/api/token", { email, password })
       .then((response) => {
         setToken(response.data.access_token);
-        setAccount("");
+        setEmail("");
         setPassword("");
         history.push("/");
       })
@@ -47,12 +47,12 @@ function Login({ setToken }) {
           <div className="form-group">
             <label htmlFor="account">Account</label>
             <input
-              type="text"
+              type="email"
               id="account"
               className="form-control"
               placeholder="Enter your email"
               onChange={handleAccountChange}
-              value={account}
+              value={email}
               required
             />
           </div>

@@ -21,7 +21,6 @@ function SignUp() {
       url: "/api/signup",
       data: {
         account: username,
-		category: 1,
         email: email,
         password: password,
       },

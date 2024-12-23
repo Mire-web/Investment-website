@@ -35,10 +35,9 @@ def create_tables():
 
 @app.route('/api/signup', methods=["POST"])
 def create_new_user():
-    new_user = UserModel(request.json.get("username", None),
-              request.json.get("category", 1),
-              request.json.get("email", None),
-              request.json.get("password", None))
+    new_user = UserModel(request.json.get("account", None),
+              request.json.get("password", None),
+              request.json.get("email", None))
     try:
         new_user.save_to_db()
         return {"msg": "Successful"}, 201
@@ -53,17 +52,16 @@ def create_token():
     '''
     try:
         email = request.json.get("email", None)
-        account = request.json.get("account", None)
         password = request.json.get("password", None)
 
         if not UserModel.find_by_account(email=email):
             return {"msg": "Wrong account or password"}, 401
-        user_instance = UserModel.find_by_account(email=email)
+        user_instance = UserModel.find_by_account(email)
         password_hash = user_instance.__dict__['password']
         if get_sha256(password) != password_hash:
             return {"msg": "Wrong account or password"}, 401
 
-        access_token = create_access_token(identity=account)
+        access_token = create_access_token(identity=email)
         response = {"msg": "Success", "access_token": access_token}
         return response
     except Exception as e:
