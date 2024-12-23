@@ -1,5 +1,4 @@
 from db import db
-import hashlib
 
 class UserModel(db.Model):
     __tablename__ = "users"
@@ -12,7 +11,7 @@ class UserModel(db.Model):
 
     def __init__(self, account, password, email):
         self.account = account
-        self.password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        self.password = password
         self.email = email
         self.category = 1
 

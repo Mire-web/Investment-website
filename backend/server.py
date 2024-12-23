@@ -36,7 +36,7 @@ def create_tables():
 @app.route('/api/signup', methods=["POST"])
 def create_new_user():
     new_user = UserModel(request.json.get("account", None),
-              request.json.get("password", None),
+              get_sha256(request.json.get("password", None)),
               request.json.get("email", None))
     try:
         new_user.save_to_db()
