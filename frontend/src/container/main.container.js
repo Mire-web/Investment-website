@@ -77,9 +77,9 @@ function MainPage({ token }) {
       {/* Footer Section */}
       <footer className="footer-section">
         <div className="footer-links">
-          <Link to="#services">Services</Link>
-          <Link to="#testimonials">Testimonials</Link>
-          <Link to="#about">About</Link>
+          <Link to="/#services">Services</Link>
+          <Link to="/#testimonials">Testimonials</Link>
+          <Link to="/#about">About</Link>
           <Link to="/contact">Contact</Link>
         </div>
         <p>&copy; 2024 Minerswealth. All rights reserved.</p>

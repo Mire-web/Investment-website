@@ -9,10 +9,10 @@ class UserModel(db.Model):
     category = db.Column(db.Integer, nullable=False)
     password = db.Column(db.String(80), nullable=False)  # sha256
 
-    def __init__(self, account, category, password):
+    def __init__(self, account, password, email):
         self.account = account
         self.password = password
-        self.category = category
+        self.email = email
 
     @classmethod
     def find_by_account(cls, account: str) -> "UserModel":

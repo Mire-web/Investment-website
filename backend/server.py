@@ -33,6 +33,17 @@ MAX_INVESTMENT = 20000000
 def create_tables():
     db.create_all()
 
+@app.route('/api/signup', methods=["POST"])
+def create_new_user():
+    new_user = UserModel(request.json.get("username", None),
+              request.json.get("category", 1),
+              request.json.get("email", None),
+              request.json.get("password", None))
+    try:
+        new_user.save_to_db()
+        return {"msg": "Successful"}, 201
+    except Exception as e:
+        return {"msg": "Unsuccessful"}, 401
 
 @app.route('/api/token', methods=["POST"])
 def create_token():
@@ -41,12 +52,13 @@ def create_token():
     If the user is authenticated, return the jwt token.
     '''
     try:
+        email = request.json.get("email", None)
         account = request.json.get("account", None)
         password = request.json.get("password", None)
 
-        if not UserModel.find_by_account(account=account):
+        if not UserModel.find_by_account(email=email):
             return {"msg": "Wrong account or password"}, 401
-        user_instance = UserModel.find_by_account(account=account)
+        user_instance = UserModel.find_by_account(email=email)
         password_hash = user_instance.__dict__['password']
         if get_sha256(password) != password_hash:
             return {"msg": "Wrong account or password"}, 401

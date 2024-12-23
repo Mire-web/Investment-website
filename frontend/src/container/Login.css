@@ -1,0 +1,110 @@
+/* General Page Styling */
+body {
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+	background-color: #f8f9fa;
+  }
+  
+  /* Login Wrapper */
+  .login-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+  }
+  
+  /* Login Container */
+  .login-container {
+	background: #1a1a1a;
+	color: white;
+	padding: 40px;
+	border-radius: 10px;
+	width: 100%;
+	max-width: 400px;
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Login Header */
+  .login-header {
+	text-align: center;
+	margin-bottom: 20px;
+  }
+  
+  .login-header h2 {
+	font-size: 1.8rem;
+	color: gold;
+  }
+  
+  .login-header p {
+	font-size: 0.9rem;
+	color: #ddd;
+  }
+  
+  /* Form Group */
+  .form-group {
+	margin-bottom: 20px;
+  }
+  
+  .form-group label {
+	display: block;
+	font-size: 0.9rem;
+	margin-bottom: 5px;
+	color: #ddd;
+  }
+  
+  .form-control {
+	width: 100%;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	background: #333;
+	color: #fff;
+  }
+  
+  .form-control:focus {
+	border: 1px solid gold;
+	box-shadow: none;
+	outline: none;
+  }
+  
+  /* Login Button */
+  .btn-gold {
+	background: gold;
+	color: #1a1a1a;
+	font-size: 1rem;
+	font-weight: bold;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background 0.3s;
+  }
+  
+  .btn-gold:hover {
+	background: #ffcc00;
+  }
+  
+  /* Login Footer */
+  .login-footer {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 0.9rem;
+  }
+  
+  .login-footer a {
+	color: gold;
+	text-decoration: none;
+  }
+  
+  .login-footer a:hover {
+	text-decoration: underline;
+  }
+  

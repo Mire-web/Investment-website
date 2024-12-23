@@ -11,6 +11,7 @@ import LogOut from "./container/logout.container";
 import DashBoard from "./container/dashboard.container";
 import AdminPage from "./container/admin.container";
 import PersonalPage from "./container/personal.container";
+import SignUp from './container/signup.container';
 
 function App() {
   const { token, removeToken, setToken } = useToken();
@@ -38,17 +39,20 @@ function App() {
             <div className="collapse navbar-collapse" id="navbarNav">
               {!token && token !== "" && token !== undefined ? (
                 <ul className="navbar-nav ms-auto ml-auto">
+				<li className="nav-item">
+				  <Link className="nav-link" to={"/sign-up"}>Sign Up</Link>
+				</li>
                   <li className="nav-item">
                     <Link className="nav-link" to={"/sign-in"}>Login</Link>
                   </li>
 				  <li className="nav-item">
-          <Link className="nav-link" to="#services">Services</Link>
+          <Link className="nav-link" to="/#services">Services</Link>
 		  </li>
 		  <li className='nav-item'>
-          <Link to="#testimonials" className="nav-link">Testimonials</Link>
+          <Link to="/#testimonials" className="nav-link">Testimonials</Link>
 		  </li>
 		  <li className='nav-item'>
-          <Link to="#about" className="nav-link">About</Link>
+          <Link to="/#about" className="nav-link">About</Link>
 		  </li>
 		  <li className='nav-item'>
           <Link to="/contact" className="nav-link">Contact</Link>
@@ -89,6 +93,9 @@ function App() {
             </Route>
             <Route exact path='/sign-in'>
               <Login setToken={setToken} />
+            </Route>
+            <Route exact path='/sign-up'>
+              <SignUp />
             </Route>
             <Route exact path='/logout'>
               <LogOut token={removeToken} />

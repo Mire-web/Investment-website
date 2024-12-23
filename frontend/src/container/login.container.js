@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
 import swal from "sweetalert";
+import "./Login.css";
 
 function Login({ setToken }) {
   const history = useHistory();
@@ -9,62 +10,76 @@ function Login({ setToken }) {
   const [password, setPassword] = useState("");
 
   const handleAccountChange = (e) => {
-    setAccount(e.target.value)
-  }
+    setAccount(e.target.value);
+  };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
-  }
+    setPassword(e.target.value);
+  };
+
   const logMeIn = (e) => {
-    axios(
-      {
-        method: "POST",
-        url:"/api/token",
-        data:{
-          account: account,
-          password: password,
-        }
-      }
-    ).then((response) => {
-      setToken(response.data.access_token)
-      setAccount("")
-      setPassword("")
-      history.push({
-        pathname: "/",
-      });
-    }).catch((error) => {
-      if (error.response) {
+    e.preventDefault(); // Prevent form reload
+    axios
+      .post("/api/token", { account, password })
+      .then((response) => {
+        setToken(response.data.access_token);
+        setAccount("");
+        setPassword("");
+        history.push("/");
+      })
+      .catch((error) => {
         swal({
           title: "Error",
           text: "Invalid User",
           icon: "error",
         });
-      }
-    })
-    setAccount("")
-    setPassword("")
-    e.preventDefault()
-  }
-
+      });
+  };
 
   return (
-    <div className="auth-wrapper">
-      <div className="auth-inner">
-        <form>
-          <h3>Login</h3>
+    <div className="login-wrapper">
+      <div className="login-container shadow-lg">
+        <div className="login-header">
+          <h2>Welcome Back!</h2>
+          <p>Log in to your account to continue</p>
+        </div>
+        <form onSubmit={logMeIn}>
           <div className="form-group">
-            <label>Account</label>
-            <input type="email" className="form-control" name="email"  placeholder="Enter your account" onChange={handleAccountChange} value={account}/>
+            <label htmlFor="account">Account</label>
+            <input
+              type="text"
+              id="account"
+              className="form-control"
+              placeholder="Enter your email"
+              onChange={handleAccountChange}
+              value={account}
+              required
+            />
           </div>
           <div className="form-group">
-            <label>Password</label>
-            <input type="password" className="form-control" name="password" placeholder="Enter password" onChange={handlePasswordChange} value={password}/>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              className="form-control"
+              placeholder="Enter your password"
+              onChange={handlePasswordChange}
+              value={password}
+              required
+            />
           </div>
-          <button type="button" className="btn btn-primary btn-block pantoneZOZl" onClick={logMeIn}>Submit</button>
+          <button type="submit" className="btn btn-gold btn-block">
+            Log In
+          </button>
         </form>
+        <div className="login-footer">
+          <p>
+            Don’t have an account? <a href="/sign-up">Sign Up</a>
+          </p>
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
