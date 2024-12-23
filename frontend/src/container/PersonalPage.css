@@ -1,0 +1,91 @@
+.personal-page {
+	padding: 20px;
+	font-family: Arial, sans-serif;
+	background-color: #f9f9f9;
+	color: #333;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+  }
+  
+  .loading-container {
+	text-align: center;
+  }
+  
+  .spinner {
+	border: 5px solid #f3f3f3;
+	border-top: 5px solid #1e90ff;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+  
+  .profile-card {
+	background: #fff;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	width: 400px;
+  }
+  
+  .profile-card h1 {
+	margin: 0 0 20px;
+	font-size: 2rem;
+	color: gold;
+  }
+  
+  .profile-details p {
+	font-size: 1.1rem;
+	margin: 10px 0;
+  }
+  
+  .password-update-section {
+	margin-top: 20px;
+  }
+  
+  .password-update-section h3 {
+	margin-bottom: 15px;
+	color: #555;
+  }
+  
+  .password-input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+  }
+  
+  .update-btn {
+	padding: 10px 20px;
+	background-color: gold;
+	color: #000;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+  }
+  
+  .update-btn:hover {
+	background-color: #000;
+	color: #fff;
+  }
+  
+  .update-message {
+	margin-top: 10px;
+	font-size: 0.9rem;
+	color: #28a745;
+  }
+  

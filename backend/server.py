@@ -20,7 +20,7 @@ admin_account = os.environ.get("ADMIN_ACCOUNT")
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY',)
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 jwt = JWTManager(app)
 CORS(app)
@@ -87,7 +87,7 @@ def validate_token():
     '''
     try:
         account = get_jwt_identity()
-        if not UserModel.find_by_account(account=account):
+        if not UserModel.find_by_account(email=account):
             return {"msg": "Wrong account or password"}, HTTPStatus.FORBIDDEN
 
         exp_timestamp = get_jwt()["exp"]
@@ -357,8 +357,8 @@ def list_current_users():
         if account != admin_account:
             return {"msg": "Not admin"}, HTTPStatus.FORBIDDEN
 
-        user_instances = UserModel.find_all_users()
-        return {"currentUsers": parse_user_instances(user_instances)}, HTTPStatus.OK
+        user_instance = UserModel.find_by_account(get_jwt_identity())
+        return {"user": user_instance}, HTTPStatus.OK
 
     except Exception as e:
         print(e)
@@ -367,20 +367,30 @@ def list_current_users():
 
 @app.route('/api/personal/listuser', methods=['GET'])
 @jwt_required()
-def list_current_users_personal():
+def get_user_details():
     '''
-    Enable self to get a list of him/herself.
+    Fetch and return the current user's details.
     '''
     try:
-        account = get_jwt_identity()
-        user_instances = UserModel.find_by_account(account=account)
-        if not user_instances:
-            return {"msg": "Wrong account or password"}, 401
-        return {"currentUsers": parse_user_instances([user_instances])}, HTTPStatus.OK
+        # Get the account from the JWT
+        email = get_jwt_identity()
+        
+        # Retrieve the user instance by account
+        user_instance = UserModel.find_by_account(email=email)
+        
+        if not user_instance:
+            return {"msg": "User not found"}, HTTPStatus.NOT_FOUND
+        
+        # Serialize user details into a response format
+        user_data = {
+            "username": user_instance.account,
+            "email": user_instance.email
+        }
+        return jsonify({"user": user_data}), HTTPStatus.OK
 
     except Exception as e:
-        print(e)
-        return {"msg": "Internal Server Error!"}, HTTPStatus.INTERNAL_SERVER_ERROR
+        print(f"Error: {e}")
+        return {"msg": "Internal Server Error"}, HTTPStatus.INTERNAL_SERVER_ERROR
 
 
 @app.route('/api/personal/changepwd', methods=['POST'])

@@ -99,7 +99,7 @@ function SignUp() {
         </form>
         <div className="login-footer">
           <p>
-            Already have an account? <a href="/sign-up">Sign In</a>
+            Already have an account? <a href="/sign-in">Sign In</a>
           </p>
         </div>
       </div>
