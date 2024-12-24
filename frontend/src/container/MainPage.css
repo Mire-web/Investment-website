@@ -99,11 +99,13 @@
   
   .testimonial-slider {
 	display: flex;
-	overflow-x: auto;
+	overflow-x: auto; /* Allows horizontal scrolling */
+	overflow-y: hidden;
 	gap: 20px;
 	padding: 20px 0;
-	justify-content: center;
+	justify-content: flex-start; /* Aligns cards to the start */
 	align-items: center;
+	scroll-behavior: smooth; /* Optional: smooth scrolling effect */
   }
   
   .testimonial-card {
@@ -113,12 +115,33 @@
 	border-radius: 10px;
 	width: 300px;
 	height: 150px;
+	flex-shrink: 0; /* Prevents cards from shrinking */
+	overflow: hidden; /* Hides overflowing content */
+	text-overflow: ellipsis;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
   }
   
   .testimonial-card h5 {
 	margin-top: 10px;
 	font-weight: bold;
   }
+
+  .testimonial-slider::-webkit-scrollbar {
+	height: 10px;
+  }
+  
+  .testimonial-slider::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 5px;
+  }
+  
+  .testimonial-slider::-webkit-scrollbar-thumb:hover {
+	background: #555;
+  }
+  .testimonial-slider {
+	-webkit-overflow-scrolling: touch; /* Smooth touch scrolling on iOS */
+  }
+	
   
   /* About Section */
   .about-section {

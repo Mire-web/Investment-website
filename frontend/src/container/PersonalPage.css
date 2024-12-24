@@ -82,6 +82,10 @@
 	background-color: #000;
 	color: #fff;
   }
+
+  .update-btn:disabled{
+	background-color: gray;
+  }
   
   .update-message {
 	margin-top: 10px;

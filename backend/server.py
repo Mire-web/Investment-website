@@ -400,26 +400,36 @@ def change_user_password_personal():
     Enable self to change any him/herself password.
     '''
     try:
-        account = get_jwt_identity()
-        if not UserModel.find_by_account(account=account):
-            return {"msg": "Wrong account or password"}, 401
-        user_account = request.form["account"]
-        new_password = request.form["password"]
-        if user_account != account:
-            return {"msg": "Not yourself"}, HTTPStatus.FORBIDDEN
-        if UserModel.find_by_account(account=user_account) is None:
-            return {"msg": "Does not exist"}, HTTPStatus.FORBIDDEN
+        email = get_jwt_identity()
 
+        # Parse JSON payload
+        request_data = request.get_json()
+        user_account = request_data.get("email")
+        new_password = request_data.get("password")
+
+        # Validate input
+        if not user_account or not new_password:
+            return {"msg": "Email and password are required"}, HTTPStatus.BAD_REQUEST
+        if user_account != email:
+            return {"msg": "Cannot change another user's password"}, HTTPStatus.FORBIDDEN
+
+        # Verify the user exists
+        user = UserModel.find_by_account(email=user_account)
+        if not user:
+            return {"msg": "User not found"}, HTTPStatus.NOT_FOUND
+
+        # Update the password
         try:
-            UserModel.reset_password(account=user_account, password=get_sha256(new_password))
-        except Exception:
-            raise ValueError
+            UserModel.reset_password(email=user_account, password=get_sha256(new_password))
+        except Exception as e:
+            print(f"Error updating password: {e}")
+            return {"msg": "Unable to update password"}, HTTPStatus.INTERNAL_SERVER_ERROR
 
-        return {"msg": "Success"}, HTTPStatus.OK
+        return {"msg": "Password updated successfully"}, HTTPStatus.OK
 
-    except Exception:
+    except Exception as e:
+        print(f"Unexpected error: {e}")
         return {"msg": "Internal Server Error!"}, HTTPStatus.INTERNAL_SERVER_ERROR
-
 
 @app.route('/api/admin/verify', methods=['GET'])
 @jwt_required()

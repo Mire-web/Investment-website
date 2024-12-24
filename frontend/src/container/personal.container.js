@@ -6,8 +6,22 @@ export default function PersonalPage({ token }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [newPassword, setNewPassword] = useState("");
-  const [updateMessage, setUpdateMessage] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [updateMessage, setUpdateMessage] = useState("Passwords must be the same");
+  const [same, setSame] = useState(false);
 
+
+  const check_password = () => {
+	if (newPassword === confirmPassword && newPassword !== "")
+		setSame(true);
+	else
+		setSame(false);
+  }
+
+  useEffect(() => {
+	check_password()
+  }, [confirmPassword])
+  
   // Fetch user details
   const getUserDetails = async () => {
     try {
@@ -24,21 +38,25 @@ export default function PersonalPage({ token }) {
 
   // Handle password update
   const updatePassword = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post(
-        "/api/personal/update-password",
-        { password: newPassword },
-        { headers: { Authorization: "Bearer " + token } }
-      );
-      setUpdateMessage("Password updated successfully!");
-      setNewPassword("");
-    } catch (error) {
-      console.error("Error updating password:", error);
-      setUpdateMessage("Failed to update password. Please try again.");
-    }
+	e.preventDefault();
+	try {
+	  const payload = {
+		email: user.email,
+		password: newPassword,
+	  };
+  
+	  await axios.post("/api/personal/changepwd", payload, {
+		headers: { Authorization: "Bearer " + token },
+	  });
+  
+	  setUpdateMessage("Password updated successfully!");
+	  setNewPassword("");
+	} catch (error) {
+	  console.error("Error updating password:", error);
+	  setUpdateMessage("Failed to update password. Please try again.");
+	}
   };
-
+  
   useEffect(() => {
     getUserDetails();
   }, []);
@@ -72,9 +90,21 @@ export default function PersonalPage({ token }) {
                 className="password-input"
                 required
               />
-              <button type="submit" className="update-btn">
+			  <input
+                type="password"
+                placeholder="Confirm new password"
+                value={confirmPassword}
+                onChange={(e) => {
+					setConfirmPassword(e.target.value);
+				}}
+                className="password-input"
+                required
+              />
+              {same ? <button type="submit" className="update-btn">
                 Update Password
-              </button>
+              </button> : <button type="submit" className="update-btn" disabled>
+                Update Password
+              </button>}
             </form>
             {updateMessage && <p className="update-message">{updateMessage}</p>}
           </div>
